@@ -1,0 +1,13 @@
+h1 {
+    border: 2px #eee solid;
+    color: rgb(42, 165, 69);
+    text-align: center;
+    padding: 10px;
+}
+img {
+    width: 100vw;
+    height: auto;
+    max-width: none;
+    max-height: 100vh;
+    object-fit: contain;
+}
