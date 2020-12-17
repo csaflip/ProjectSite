@@ -10,5 +10,6 @@ Then, activate the venv: `venv\Scripts\activate.bat`
 Then, install dependencies: `pip install -r requirements.txt`
 
 Next, export the flask app .py so flask knows what you want to run: `export FLASK_APP=reminder.py`
+On windows: `set FLASK_APP=reminder.py`
 
-Finall, do: `flask_run`
+Finally, do: `flask run`
