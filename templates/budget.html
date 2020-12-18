@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Here will be the budget database using SQLite! {% endblock %}</h1>
+    {% for column in columns %}
+        <a href="#">
+            <h2>{{ column['category'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ column['created'] }}</span>
+        <span class="badge badge-primary">{{ column['dollar'] }}</span>
+        <hr>
+{% endfor %}
+    <h2>Total:</h2>
+    <h2 class="badge badge-danger">{{ total }}</span>
+{% endblock %}
