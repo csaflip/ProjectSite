@@ -11,5 +11,5 @@ Then, install dependencies: `pip install -r requirements.txt`
 
 Next, export the flask app .py so flask knows what you want to run: `export FLASK_APP=reminder.py`
 On windows: `set FLASK_APP=reminder.py`
-
+ 
 Finally, do: `flask run`
