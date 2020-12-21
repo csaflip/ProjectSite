@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from functions.tendybot import check_tendy
 from functions.bunnygetter import get_bunny
 from functions.randomwiki import scrape_wiki_article
@@ -25,5 +25,11 @@ def bunny():
 
 @app.route('/wiki')
 def wiki():
-    #scrape_wiki_article() # scrape wiki article
     return render_template('wiki.html')
+
+@app.route('/wikiresult',methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      wikilink = scrape_wiki_article(url=result['art'], counter=0, iterations=4)
+      return render_template("wikiresult.html", wikilink = wikilink)

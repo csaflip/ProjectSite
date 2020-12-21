@@ -12,7 +12,7 @@ def scrape_wiki_article(url, counter, iterations):
 	soup = BeautifulSoup(response.content, 'html.parser')
 
 	title = soup.find(id="firstHeading")
-	print(title.text + ": " + url)
+	result = title.text + ": " + url
 
 	allLinks = soup.find(id="bodyContent").find_all("a")
 	random.shuffle(allLinks)
@@ -29,5 +29,6 @@ def scrape_wiki_article(url, counter, iterations):
 	
 	counter += 1
 	scrape_wiki_article("https://en.wikipedia.org" + linkToScrape['href'], counter, iterations)
+	return result
 
-scrape_wiki_article("https://en.wikipedia.org/wiki/Web_scraping", counter=0, iterations=5)
+# scrape_wiki_article("https://en.wikipedia.org/wiki/Web_scraping", counter=0, iterations=5) (for testing)
