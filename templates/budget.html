@@ -1,15 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %}Here will be the budget database using SQLite! {% endblock %}</h1>
+    <h1>{% block title %}Budget Tool using SQL!{% endblock %}</h1>
+    <table>
+
     {% for column in columns %}
-        <a href="#">
-            <h2>{{ column['category'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ column['created'] }}</span>
-        <span class="badge badge-primary">{{ column['dollar'] }}</span>
-        <hr>
-{% endfor %}
+    <tr>
+        <th>{{ column['category'] }}</th>
+        <th>  {{ column['created'] }}  </th>
+        <th id="dollaramount"> $ {{ column['dollar'] }}</th>
+    </tr>
+    {% endfor %}
+    </table>
+
     <h2>Total:</h2>
-    <h2 class="badge badge-danger">{{ total }}</span>
+    <span class="badge badge-danger">$ {{ total }}</span>
+    <hr>
+        
+    <form action="" method="post">
+
+        <label for="category">Name/Category of Item:</label><br>
+        <input type="text" id="category" name="category"><br>
+        <label for="cost">Cost of Item/Category:</label><br>
+        <input type="text" id="cost" name="cost"><br>
+        <input type="submit" value="Submit">
+        <input type="submit" name="reset button" value="Reset Table">
+        <hr>
+    </form>   
 {% endblock %}

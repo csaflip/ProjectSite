@@ -29,10 +29,31 @@ def bunny():
     get_bunny() # update bunny pic
     return render_template('bunny.html')
 
-@app.route('/budget')
+@app.route('/budget', methods=('GET', 'POST'))
 def budget():
-    conn = get_db_connection()
-    columns = conn.execute('SELECT * FROM budget').fetchall()
-    total = conn.execute('SELECT SUM(dollar) from budget').fetchone()[0]
-    conn.close()
-    return render_template('budget.html', columns=columns, total=total)
+    if request.method == 'GET':
+        conn = get_db_connection()
+        columns = conn.execute('SELECT * FROM budget').fetchall() # commit not needed because fetching values
+        total = conn.execute('SELECT SUM(dollar) from budget').fetchone()[0]
+        conn.close()
+        return render_template('budget.html', columns=columns, total=total)
+    elif request.method == 'POST':
+        if 'reset button' in request.form:
+            conn = get_db_connection()
+            conn.execute('DELETE FROM budget')
+            conn.commit() # must commit changes to database
+            conn.close()
+            return redirect(url_for('budget'))
+
+        category = request.form['category']
+        cost = request.form['cost']
+
+        if not category: # if category not entered
+            flash('Title is required!')
+        else:
+            conn = get_db_connection()
+            conn.execute('INSERT INTO budget (category, notes, dollar) VALUES (?, ?, ?)',
+                         (category, '', cost))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('budget'))
