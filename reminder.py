@@ -46,6 +46,7 @@ def budget():
             return redirect(url_for('budget'))
 
         category = request.form['category']
+        item = request.form['item']
         cost = request.form['cost']
 
         if not category: # if category not entered
@@ -53,7 +54,7 @@ def budget():
         else:
             conn = get_db_connection()
             conn.execute('INSERT INTO budget (category, notes, dollar) VALUES (?, ?, ?)',
-                         (category, '', cost))
+                         (category, item, cost))
             conn.commit()
             conn.close()
             return redirect(url_for('budget'))

@@ -11,6 +11,17 @@ img {
     max-height: 100vh;
     object-fit: contain;
 }
+table, th, td 
+{
+    border: 1px solid black;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+
+
 #dollaramount {
     color: rgb(32, 74, 209)
 }
