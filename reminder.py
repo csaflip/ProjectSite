@@ -30,6 +30,9 @@ def wiki():
 @app.route('/wikiresult',methods = ['POST', 'GET'])
 def result():
    if request.method == 'POST':
-      result = request.form
-      wikilink = scrape_wiki_article(url=result['art'], counter=0, iterations=4)
-      return render_template("wikiresult.html", wikilink = wikilink)
+      inputform = request.form
+      print(inputform['iterations'])
+      wikiscrape = scrape_wiki_article(url=inputform['art'], counter=0, iterations=int(inputform['iterations']))
+      wikititle = wikiscrape.split(': ')[0]
+      wikilink = wikiscrape.split(': ')[1]
+      return render_template("wikiresult.html", wikilink = wikilink, wikititle = wikititle)
