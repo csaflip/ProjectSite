@@ -6,8 +6,9 @@
 
     {% for column in columns %}
     <tr>
-        <th>{{ column['category'] }}</th>
         <th>  {{ column['created'] }}  </th>
+        <th>{{ column['category'] }}</th>
+        <th> {{ column['notes'] }}</th> <!-- This is the name of the item. analagous to the item created below-->
         <th id="dollaramount"> $ {{ column['dollar'] }}</th>
     </tr>
     {% endfor %}
@@ -19,8 +20,18 @@
         
     <form action="" method="post">
 
-        <label for="category">Name/Category of Item:</label><br>
-        <input type="text" id="category" name="category"><br>
+        <label for="category">Category of Item:</label><br>
+        <select name="category" id="category">
+            <optgroup label="Categories">
+                <option value="house">House</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="health">Health</option>
+                <option value="transport">Transport</option>
+                <option value="income">Income</option>
+            </optgroup>
+        </select>
+        <label for="item">Name of item:</label><br>
+        <input type="text" id="item" name="item"><br> 
         <label for="cost">Cost of Item/Category:</label><br>
         <input type="text" id="cost" name="cost"><br>
         <input type="submit" value="Submit">
