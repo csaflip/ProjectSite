@@ -11,3 +11,6 @@ img {
     max-height: 100vh;
     object-fit: contain;
 }
+#dollaramount {
+    color: rgb(32, 74, 209)
+}
