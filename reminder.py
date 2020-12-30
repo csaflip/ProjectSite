@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from functions.tendybot import check_tendy
 from functions.bunnygetter import get_bunny
+from functions.bunnygetter import update_bunny
 from functions.randomwiki import scrape_wiki_article
 import sqlite3
 
@@ -26,16 +27,20 @@ def tender():
      # send chicken tender information
     return render_template('tender.html', tender_message=check_tendy())
     
-@app.route('/bunny')
+@app.route('/bunny', methods = ['POST', 'GET'])
 def bunny():
-    get_bunny() # update bunny pic
-    return render_template('bunny.html')
+    if request.method == 'POST':
+        update_bunny()
+        return redirect(url_for('bunny')) # reload the page
+    else: # any other http request
+        get_bunny() # update bunny pic
+        return render_template('bunny.html')
 
 @app.route('/wiki')
 def wiki():
     return render_template('wiki.html')
 
-@app.route('/wikiresult',methods = ['POST', 'GET'])
+@app.route('/wikiresult', methods = ['POST', 'GET'])
 def result():
    if request.method == 'POST':
       inputform = request.form

@@ -2,6 +2,10 @@
 
 {% block content %}
     <h1>{% block title %} Cute picture of a bunny!{% endblock %}</h1>
+
     <img src="static/bunny.jpg">
+    <form action="" method="post">
+        <input type="submit" name="update button" value="Update Bunny Pics">
+    </form> 
     <!-- <a href="{{ url_for('bunny')}}" class="button">Go to Google</a> -->
 {% endblock %}
